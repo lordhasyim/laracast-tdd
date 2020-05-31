@@ -17,15 +17,21 @@ class ProjectsController extends Controller
     public function store(Request $request)
     {
 
-        $attributes = $request->validate(['title' => 'required' , 'description' => 'required', 'owner_id' => 'required']);
+        $attributes = $request->validate(['title' => 'required' , 'description' => 'required']);
 
-        Project::create($attributes);
+        auth()->user()->projects()->create($attributes);
+
+
 
         return redirect('/projects');
     }
 
     public function show(Project $project)
     {
+        if(auth()->id() != $project->owner_id){
+            abort(403);
+        }
+
         return view('projects.show', compact('project'));
     }
 }
