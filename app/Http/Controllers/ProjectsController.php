@@ -14,6 +14,10 @@ class ProjectsController extends Controller
         return view('projects.index', compact('projects'));
     }
 
+    public function create()
+    {
+        return view('projects.create');
+    }
     public function store(Request $request)
     {
 
@@ -28,7 +32,7 @@ class ProjectsController extends Controller
 
     public function show(Project $project)
     {
-        if(auth()->id() != $project->owner_id){
+        if(auth()->user()->isNot($project->owner)){
             abort(403);
         }
 
