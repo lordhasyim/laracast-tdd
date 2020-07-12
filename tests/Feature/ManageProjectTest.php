@@ -14,11 +14,15 @@ class ManageProjectTest extends TestCase
     public function guests_can_not_control_project(){
         $project = factory('App\Project')->create();
 
+
         $this->get('/projects')->assertRedirect('login');
+        $this->get('/projects/create')->assertRedirect('login');
         $this->post('/projects', $project->toArray())->assertRedirect('login');
 
         $this->get($project->path())->assertRedirect('login');
     }
+
+
 
 
     /** @test **/

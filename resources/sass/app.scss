@@ -1,8 +1,18 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+
+
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
 
 // Variables
 @import 'variables';
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+
+.button{
+    background-color: #42cdff;
+    box-shadow: 0 2px 7px 0 #b0eaff;
+    border-radius: 8px;
+}
